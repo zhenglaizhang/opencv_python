@@ -149,3 +149,4 @@ project/boot/
 project/plugins/project/
 .history
 .lib/
+images/*.pdf
