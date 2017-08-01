@@ -49,7 +49,7 @@ flat_numpy_array = np.array(random_byte_array)
 
 # 400 x 300 gray img
 gray_img = flat_numpy_array.reshape(300, 400)
-cv2.imwrite('random_gray.png', gray_img)
+cv2.imwrite('/tmp/random_gray.png', gray_img)
 
 # 400 x 100 colorful img
 bgr_img = flat_numpy_array.reshape(100, 400, 3)
@@ -60,7 +60,7 @@ print(bgr_img.dtype)
 # set all `G` to 0
 # indexing
 bgr_img[:, :, 1] = 0
-cv2.imwrite("random_bgr.png", bgr_img)
+cv2.imwrite("/tmp/random_bgr.png", bgr_img)
 
 gray_img2 = np.random.randint(0, 256, 120000).reshape(300, 400)
 
