@@ -1,10 +1,12 @@
 import cv2
 from managers import WindowManager, CaptureManager
+import filters
 
 class Cameo(object):
     def __init__(self):
         self._window_manager = WindowManager('Cameo', self.on_key_press)
         self._capture_manager = CaptureManager(cv2.VideoCapture(0), self._window_manager, True)
+        self._curve_filter = filters.BGRPortraCurveFilter()
 
     def run(self):
         """Run the main loop"""
@@ -14,6 +16,10 @@ class Cameo(object):
             frame = self._capture_manager.frame
 
             # filter the frame
+            filters.stroke_edges(frame, frame)
+
+            # emulating Portra film colors
+            self._curve_filter.apply(frame, frame)
 
             self._capture_manager.exit_frame()
             self._window_manager.process_events()
