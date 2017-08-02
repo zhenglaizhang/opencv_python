@@ -26,6 +26,9 @@ while True:
     lower_blue = np.array([110, 50, 50])
     upper_blue = np.array([130, 255, 255])
 
+    lower_green = np.array([50, 50, 50])
+    upper_green = np.array([70, 255, 255])
+
     mask = cv2.inRange(hsv, lower_blue, upper_blue)
 
     res = cv2.bitwise_and(frame, frame, mask=mask)
@@ -38,3 +41,15 @@ while True:
         break
 
 cv2.destroyAllWindows()
+
+
+# 这里的三层括号应该分别对应于 cvArray，cvMat，IplImage
+green = np.uint8([[[0, 255, 0]]])
+
+hsv_green = cv2.cvtColor(green, cv2.COLOR_BGR2HSV)
+print(hsv_green)
+# 现在你可以分别用 [H-100，100，100] 和 [H+100，255，255] 做上 下阈值。
+# or [H-10, H+10]?
+blue = np.uint8([[[255, 0, 0]]])
+hsv_blue = cv2.cvtColor(blue, cv2.COLOR_BGR2HSV)
+print(hsv_blue)
